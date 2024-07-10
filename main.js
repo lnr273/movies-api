@@ -102,6 +102,8 @@ const displayMovieInfo = (data) => {
             saveMovieBtn.innerHTML = `<i class="fa-solid fa-bookmark fa-xl" style="color: #f0f0f0;"></i>`
         }
     })
+
+    likeBtn.addEventListener("click", () => likeBtn.innerHTML = `<i class="fa-solid fa-heart fa-xl" style="color: #c43636;"></i>`)
     
     movieInput.value = ""
     yearInput.value = ""

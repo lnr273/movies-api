@@ -6,7 +6,7 @@
 
 body, html{
     background: rgb(21,23,27);
-background: radial-gradient(circle,rgb(17, 27, 37) 40%, rgba(21,23,27,1) 80% );
+    background: radial-gradient(circle,rgb(17, 27, 37) 40%, rgba(21,23,27,1) 80% );
     color: white;
 }
 
@@ -70,6 +70,7 @@ button{
     display: grid;
     margin: 15px;
     margin-left: 90px;
+    grid-template-rows: 35px auto;
     overflow: auto;
 }
 
@@ -83,7 +84,6 @@ button{
     opacity: 1;
 }
 
-/* consertar movie info div */
 .movie-info{
     display: flex;
     justify-content: space-between;
