@@ -10,8 +10,8 @@ const saveMovie = (movie) => {
     dbMovie.push(movie)
     // sort nao esta funcionando
     dbMovie.sort((a, b) => {
-        if (a.name < b.name) return -1
-        if (a.name > b.name) return 1
+        if (a.Title < b.Title) return -1
+        if (a.Title > b.Title) return 1
         return 0
     })
     setLocalStorage(dbMovie)

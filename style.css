@@ -65,7 +65,7 @@ button{
 }
 
 .my-movies-container{
-    height: 700px;
+    height: 800px;
     width: 400px;
     display: grid;
     margin: 15px;
@@ -85,11 +85,10 @@ button{
 }
 
 .movie-info{
-    display: flex;
+    display: none;
     justify-content: space-between;
     align-items: center;
-    position: absolute;
-    height: 44px;
+    height: 50px;
     width: 160px;
     opacity: 0;
     color: #fff;
@@ -107,8 +106,9 @@ button{
 }
 
 .movie:hover .movie-info {
-    transform: translateY(-48px);
+    transform: translateY(-53px);
     opacity: 1;
+    display: flex;
 }
 
 .container{
