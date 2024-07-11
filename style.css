@@ -4,9 +4,8 @@
     box-sizing: border-box;
 }
 
-body, html{
+body{
     background: rgb(21,23,27);
-    background: radial-gradient(circle,rgb(17, 27, 37) 40%, rgba(21,23,27,1) 80% );
     color: white;
 }
 
@@ -16,8 +15,8 @@ header{
 }
 
 main{
-    display: flex;
-    justify-content: center;
+    display: inline-flex;
+    /* colocar os itens no centro */
 }
 
 li{
@@ -32,10 +31,11 @@ button{
     width: 25px;
     background: none;
     border: none;
+    color: w;
 }
 
 #form{
-    display: flex;
+    width: 250px;
 }
 
 .movie-form{
@@ -65,8 +65,8 @@ button{
 }
 
 .my-movies-container{
-    height: 800px;
-    width: 400px;
+    height: 650px;
+    width: 370px;
     display: grid;
     margin: 15px;
     margin-left: 90px;
@@ -88,9 +88,9 @@ button{
     display: none;
     justify-content: space-between;
     align-items: center;
-    height: 50px;
+    height: 40px;
     width: 160px;
-    opacity: 0;
+    opacity: 1;
     color: #fff;
     padding: 0px 8px;
     transition: inherit 1s;
@@ -101,18 +101,13 @@ button{
 .movie-image{
     height: 240px;
     width: 160px;
-    object-fit: cover;
     border-radius: 4px;
 }
 
-.movie:hover .movie-info {
-    transform: translateY(-53px);
+.movie:hover .movie-info{
+    transform: translateY(254px);
     opacity: 1;
     display: flex;
-}
-
-.container{
-    margin: 10px 20px;
 }
 
 .current-movie{
@@ -120,7 +115,7 @@ button{
     grid-template-columns: auto 600px;
     grid-template-rows: 300px 100px;
     margin: 20px;
-    width: 700px;
+    width: 600px;
 }
 
 .curr-poster{
@@ -130,7 +125,7 @@ button{
 }
 
 .div-for-info{
-    width: 600px;
+    width: 450px;
     margin: 10px 20px;
 }
 
@@ -140,4 +135,16 @@ button{
 
 .infos{
     margin: 6px;
+}
+
+.delete-movie{
+    display: none;
+    color: red;
+    cursor: pointer;
+    height: 10px;
+}
+
+.movie:hover .delete-movie{
+    display: block;
+    transform: translateY(22px);
 }

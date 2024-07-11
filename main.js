@@ -8,7 +8,6 @@ const setLocalStorage = (movie) => localStorage.setItem("dbMovies", JSON.stringi
 const saveMovie = (movie) => {
     const dbMovie = getLocalStorage()
     dbMovie.push(movie)
-    // sort nao esta funcionando
     dbMovie.sort((a, b) => {
         if (a.Title < b.Title) return -1
         if (a.Title > b.Title) return 1
@@ -17,7 +16,7 @@ const saveMovie = (movie) => {
     setLocalStorage(dbMovie)
 }
 
-const deleteMovie = (id) => {
+const deleteMovieFromLocalStorage = (id) => {
     const dbMovie = getLocalStorage()
     dbMovie.splice(id, 1)
     setLocalStorage(dbMovie)
@@ -36,11 +35,15 @@ const displayError = () => {
 
 const getMovieData = async(title, year) => {
     const myKey = "9ec5cbce"
-    const url = `http://www.omdbapi.com/?apikey=${myKey}&t=${title}&y=${year}&plot=full&type=movie`
-    
-    const response = await fetch(url)
-    if (!response.ok) throw new Error ("Could not fetch data")
-    return await response.json()
+    try {
+        const url = `http://www.omdbapi.com/?apikey=${myKey}&t=${title}&y=${year}&plot=full&type=movie`
+        const response = await fetch(url)
+        if (!response.ok) throw new Error ("Could not fetch data")
+        return await response.json()
+    }
+    catch(error){
+        console.log(error)
+    }
 }
 
 form.addEventListener("submit", async(e) => {
@@ -54,7 +57,8 @@ form.addEventListener("submit", async(e) => {
                 throw new Error ("Could not fetch data")
             }
             displayMovieInfo(data)
-        } catch(error) {
+        }
+        catch(error) {
             console.error(error)
         }
     }
@@ -71,7 +75,7 @@ const displayMovieInfo = (data) => {
     const likeBtn = document.createElement("button")
     const divForInfo = document.createElement("div")
     
-    // adding atribute to elements
+    // adding classes to elements
     poster.classList.add("curr-poster")
     divForInfo.classList.add("div-for-info")
 
@@ -93,10 +97,10 @@ const displayMovieInfo = (data) => {
     currMovie.appendChild(divForInfo)
     currMovie.appendChild(divForBtns)
 
-    // rever função
     saveMovieBtn.addEventListener("click", () => {
         if (isMovieSaved(data)) {
             alert("You already saved this movie.")
+            return
         } else {
             saveMovie(data)
             saveMovieBtn.innerHTML = `<i class="fa-solid fa-bookmark fa-xl" style="color: #f0f0f0;"></i>`
@@ -115,10 +119,11 @@ const createDiv = ({Title, Poster, imdbID}) => {
     li.classList.add("movie")
     li.id = imdbID
     li.innerHTML += `
-        <img class="movie-image" src="${Poster}" alt="Poster of '${Title}'">
         <div id="${Title}" class="movie-info valid-movie">
             ${Title.toUpperCase()}<br>
         </div>
+        <button onclick="deleteMovie(this)" class="delete-movie"><i class="fa-solid fa-xmark fa-xl" style="color: #c43636;"></i></button>
+        <img class="movie-image" src="${Poster}" alt="Poster of '${Title}'">
     `
     container.appendChild(li)
 }
@@ -142,10 +147,17 @@ window.addEventListener("click", (e) => {
 
 const isMovieSaved = (data) => {
     const dbMovie = getLocalStorage()
+    let movieAlreadySave = false
     dbMovie.forEach((movie) => {
         if (movie.imdbID === data.imdbID) {
-            return true
-        } else {
+            movieAlreadySave = true
         }
     })
+    return movieAlreadySave
+}
+
+const deleteMovie = (el) => {
+    const movieId = el.parentNode.id
+    deleteMovieFromLocalStorage(movieId)
+    window.location.reload()
 }
