@@ -11,17 +11,16 @@ body{
 
 header{
     display: flex;
-    justify-content: center;
+    justify-content: start;
 }
 
 main{
     display: inline-flex;
-    /* colocar os itens no centro */
 }
 
 li{
     display: inline-block;
-    margin: 4px 4px;
+    margin: 4px 8px;
 }
 
 button{
@@ -31,11 +30,11 @@ button{
     width: 25px;
     background: none;
     border: none;
-    color: w;
 }
 
 #form{
-    width: 250px;
+    width: 400px;
+    display: flex;
 }
 
 .movie-form{
@@ -66,7 +65,7 @@ button{
 
 .my-movies-container{
     height: 650px;
-    width: 370px;
+    width: 750px;
     display: grid;
     margin: 15px;
     margin-left: 90px;

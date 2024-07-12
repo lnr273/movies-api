@@ -1,3 +1,7 @@
+
+// dar refresh na div my Movies 
+
+
 const movieInput = document.getElementById("movie-input")
 const yearInput = document.getElementById("year-input")
 const form = document.getElementById("form")
@@ -117,12 +121,12 @@ const createDiv = ({Title, Poster, imdbID}) => {
     const container = document.getElementById("container")
     const li = document.createElement("li")
     li.classList.add("movie")
-    li.id = imdbID
+    li.classList.add(imdbID)
     li.innerHTML += `
         <div id="${Title}" class="movie-info valid-movie">
             ${Title.toUpperCase()}<br>
         </div>
-        <button onclick="deleteMovie(this)" class="delete-movie"><i class="fa-solid fa-xmark fa-xl" style="color: #c43636;"></i></button>
+        <button id="${imdbID}" onclick="deleteMovie(this)" class="delete-movie"><i class="fa-solid fa-xmark fa-xl" style="color: #c43636;"></i></button>
         <img class="movie-image" src="${Poster}" alt="Poster of '${Title}'">
     `
     container.appendChild(li)
@@ -157,7 +161,8 @@ const isMovieSaved = (data) => {
 }
 
 const deleteMovie = (el) => {
-    const movieId = el.parentNode.id
-    deleteMovieFromLocalStorage(movieId)
+    const movieElements = document.querySelectorAll(".movie")
+    let index = Array.from(movieElements).findIndex(li => li.classList.contains(el.id))
+    deleteMovieFromLocalStorage(index)
     window.location.reload()
 }
