@@ -1,7 +1,3 @@
-
-// dar refresh na div my Movies 
-
-
 const movieInput = document.getElementById("movie-input")
 const yearInput = document.getElementById("year-input")
 const form = document.getElementById("form")
@@ -18,6 +14,7 @@ const saveMovie = (movie) => {
         return 0
     })
     setLocalStorage(dbMovie)
+    window.location.reload()
 }
 
 const deleteMovieFromLocalStorage = (id) => {
@@ -117,7 +114,7 @@ const displayMovieInfo = (data) => {
     yearInput.value = ""
 }
 
-const createDiv = ({Title, Poster, imdbID}) => {
+const createLiForMyList = ({Title, Poster, imdbID}) => {
     const container = document.getElementById("container")
     const li = document.createElement("li")
     li.classList.add("movie")
@@ -137,7 +134,7 @@ const clearContainer = () => document.getElementById("container").innerHTML = ""
 const updateContainer = () => {
     const dbMovies = getLocalStorage()
     clearContainer()
-    dbMovies.forEach(createDiv)
+    dbMovies.forEach(createLiForMyList)
 }
 
 updateContainer()

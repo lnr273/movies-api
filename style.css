@@ -113,7 +113,7 @@ button{
     display: grid;
     grid-template-columns: auto 600px;
     grid-template-rows: 300px 100px;
-    margin: 20px;
+    margin: 20px 30px;
     width: 600px;
 }
 
